@@ -208,7 +208,7 @@ export class Cordova extends BaseIntegration {
           'fi\\n' +
           'echo "# Reading property from $SENTRY_PROPERTIES"\\n' +
           'SENTRY_CLI=$(getProperty "cli.executable")\\n' +
-          'SENTRY_COMMAND="../../$SENTRY_CLI upload-dsym"\\n' +
+          'SENTRY_COMMAND="$SENTRY_CLI upload-dsym"\\n' +
           '$SENTRY_COMMAND',
       },
     );

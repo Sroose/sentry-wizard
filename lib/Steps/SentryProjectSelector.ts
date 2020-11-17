@@ -1,10 +1,10 @@
-import { Answers, prompt, Question } from 'inquirer';
+import { Answers, prompt } from 'inquirer';
 import * as _ from 'lodash';
-import { dim } from '../Helper/Logging';
+
 import { BaseStep } from './BaseStep';
 
 export class SentryProjectSelector extends BaseStep {
-  public async emit(answers: Answers) {
+  public async emit(answers: Answers): Promise<any> {
     this.debug(answers);
 
     if (!_.has(answers, 'wizard')) {
@@ -12,7 +12,10 @@ export class SentryProjectSelector extends BaseStep {
       return {};
     }
 
-    if (_.has(answers, 'wizard.projects') && answers.wizard.projects.length === 0) {
+    if (
+      _.has(answers, 'wizard.projects') &&
+      answers.wizard.projects.length === 0
+    ) {
       throw new Error('no projects');
     }
 
@@ -24,7 +27,7 @@ export class SentryProjectSelector extends BaseStep {
         {
           choices: answers.wizard.projects.map((project: any) => {
             return {
-              name: `${project.organization.name} / ${project.name}`,
+              name: `${project.organization.name} / ${project.slug}`,
               value: project,
             };
           }),
@@ -41,11 +44,23 @@ export class SentryProjectSelector extends BaseStep {
           token: _.get(answers, 'wizard.apiKeys.token', null),
         },
         dsn: {
-          public: _.get(selectedProject, 'selectedProject.keys.0.dsn.public', null),
-          secret: _.get(selectedProject, 'selectedProject.keys.0.dsn.secret', null),
+          public: _.get(
+            selectedProject,
+            'selectedProject.keys.0.dsn.public',
+            null,
+          ),
+          secret: _.get(
+            selectedProject,
+            'selectedProject.keys.0.dsn.secret',
+            null,
+          ),
         },
         organization: {
-          slug: _.get(selectedProject, 'selectedProject.organization.slug', null),
+          slug: _.get(
+            selectedProject,
+            'selectedProject.organization.slug',
+            null,
+          ),
         },
         project: {
           slug: _.get(selectedProject, 'selectedProject.slug', null),

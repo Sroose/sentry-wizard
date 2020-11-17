@@ -24,7 +24,8 @@ scratch/
 .idea
 *.sublime-*
 
-
 sentry.properties
 coverage/
 plugins
+
+.eslintcache

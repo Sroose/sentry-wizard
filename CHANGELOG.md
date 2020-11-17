@@ -1,5 +1,26 @@
 # Changelog
 
+## v1.1.4
+
+* Bump @sentry/cli `1.52.4`
+
+## v1.1.3
+
+* Add sourcemap output path to derived data to react native ios script 
+* Bump @sentry/cli `1.52.3`
+
+## v1.1.2
+
+* Don't `cli/executable` for Android project on react-native
+
+## v1.1.1
+
+* Bump @sentry/cli `1.51.0`
+
+## v1.1.0
+
+* Bump @sentry/cli `1.50.0`
+
 ## v1.0.2
 
 * Several dependeny bumps with related security updates
